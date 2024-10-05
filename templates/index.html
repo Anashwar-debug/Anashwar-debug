@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial;
+  padding: 20px;
+  background: #f1f1f1;
+}
+.header img {
+  width: 100px; /* Adjust the logo size */
+  height: auto; /* Maintain aspect ratio */
+  align-items: end;
+}
+
+
+.card img {
+  width: 1170px; /* Make the image fill the width of its container */
+  height: 500px; /* Maintain the aspect ratio of the image */
+  display: block; /* Ensure the image behaves like a block-level element */
+  margin-bottom: 15px; /* Optional: Add some space below the image */
+}
+
+.header {
+  padding: 2px;
+  font-size: 40px;
+  text-align: center;
+  background: white;
+}
+
+.leftcolumn {   
+  float: left;
+  width: 100%;
+}
+
+.card {
+   background-color: white;
+   padding: 20px;
+   margin-top: 20px;
+}
+
+
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/* comment */
+
+#comments{
+  width:100% ;
+  height:auto
+}
+
+@media screen and (max-width: 800px) {
+  .leftcolumn, .rightcolumn {   
+    width: 100%;
+    padding: 0;
+  }
+}
+</style>
+</head>
+{%load static%}
+<body>
+
+<div class="header">
+  <img src="/static/images/logo.png">
+  <h2>Anashwar's Blog</h2>
+</div>
+{%for posts in post reversed%}
+<!-- reversed bcz we want new one at the top -->
+<div class="row">
+
+    
+    <div class="card">
+      <!-- here first post represent path in url and second posts represent database class in model -->
+    <img src="/static/images/{{posts.id}}.png" alt="{{ posts.title }}">
+    <a href="/post/{{posts.id}}" style="text-decoration: none; color: black;">
+    <h2>{{posts.title}}</h2>     
+    <h5>{{posts.created_at}}</h5>
+    <p>{{posts.Body|truncatewords:20}}</p>    
+  </a>
+    </div>
+ 
+</div>
+{% endfor %}
+</body>
+</html>
+<!-- comment -->
+<div class="card">
+
+  <div id="comments">
+    <h2>Comments</h2>
+    <form method="post">
+      {% csrf_token %}
+      <textarea rows="2" cols="50" name="myTextarea"></textarea>>
+      <br>
+      <input type="submit">
+
+    {%for text in comments%}
+    <div class="comment">
+      <p>{{text}}</p>
+      <form method="post">
+            <form>   
+              {% csrf_token %}
+              <input type="hidden" name="comm" value="{{text}}">
+              <input type="submit" name="delete" value="Delete">
+
+    </form>
+  
+    </div> 
+    {%endfor%}
+  </div>
+</div>
+
+
+
+
+

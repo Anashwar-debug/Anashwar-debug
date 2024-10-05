@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial;
+  padding: 20px;
+  background: #f1f1f1;
+}
+
+.header {
+  padding: 2px;
+  font-size: 40px;
+  text-align: center;
+  background: white;
+}
+
+.leftcolumn {   
+  float: left;
+  width: 100%;
+}
+
+.card {
+   background-color: white;
+   padding: 20px;
+   margin-top: 20px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 800px) {
+  .leftcolumn, .rightcolumn {   
+    width: 100%;
+    padding: 0;
+  }
+}
+
+.card img {
+  width:1170px; /* Set the width you want */
+  height: 700px;  /* Automatically adjust height to maintain aspect ratio */
+  display: block;
+  margin-bottom: 15px;
+  border-radius: 10px; /* Optional: Add rounded corners */
+}
+</style>
+</head>
+{% load static %}
+<body>
+
+<div class="header">
+  <h2>Anashwar's Blog</h2>
+</div>
+
+<!-- reversed bcz we want new one at the top -->
+<div class="row">
+
+  
+
+    
+    <div class="card">
+    <img src="/static/images/{{post.id}}.jpg" alt="{{ posts.title }}">
+    
+    <h2>{{post.title}}</h2>     
+    <h5>{{post.created_at}}</h5>
+    <p>{{post.Body}}</p>    
+  </a>
+    </div>
+ 
+</div>
+
+</body>
+</html>
