@@ -1,4 +1,4 @@
-<p align="left">My name is Anashwar, and I'm a BSc Computer Science student from Haldwani.</p>
+<p align="left">My name is Anashwar, and I'm a BSc Computer Science student.</p>
 
 ###
 
